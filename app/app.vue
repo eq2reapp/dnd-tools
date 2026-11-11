@@ -5,7 +5,7 @@
         <NuxtLink
           to="/"
           class="focus-visible:outline-3 outline-primary/25 rounded-md p-1 -ms-1"
-          >{{ title }}
+        >{{ title }}
         </NuxtLink>
 
         <TemplateMenu />
@@ -25,13 +25,19 @@
     <UFooter>
       <template #left>
         <p class="text-sm text-muted">
-          Built with Nuxt UI • © {{ new Date().getFullYear() }}
+          Built with <ULink
+            to="https://nuxt.com"
+            target="_blank"
+          >Nuxt</ULink>, <ULink
+            to="https://ui.nuxt.com"
+            target="_blank"
+          >Nuxt UI</ULink> • © {{ new Date().getFullYear() }}
         </p>
       </template>
 
       <template #right>
         <UButton
-          to="https://github.com/nuxt-ui-templates/starter"
+          to="https://github.com/eq2reapp/dnd-tools"
           target="_blank"
           icon="i-simple-icons-github"
           aria-label="GitHub"
@@ -45,20 +51,20 @@
 
 <script setup>
 useHead({
-  meta: [{ name: "viewport", content: "width=device-width, initial-scale=1" }],
-  link: [{ rel: "icon", href: "/favicon.ico" }],
+  meta: [{ name: 'viewport', content: 'width=device-width, initial-scale=1' }],
+  link: [{ rel: 'icon', href: '/favicon.ico' }],
   htmlAttrs: {
-    lang: "en",
-  },
-});
+    lang: 'en'
+  }
+})
 
-const title = "D&D Tools";
-const description = "Some lookups and simulators.";
+const title = 'D&D Tools'
+const description = 'Some references and calculators.'
 
 useSeoMeta({
   title,
   description,
   ogTitle: title,
-  ogDescription: description,
-});
+  ogDescription: description
+})
 </script>

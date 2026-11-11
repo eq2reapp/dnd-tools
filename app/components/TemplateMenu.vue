@@ -9,7 +9,7 @@
     class="px-5"
   >
     <UButton
-      label="Select a page"
+      label="Select a tool"
       variant="subtle"
       trailing-icon="i-lucide-chevron-down"
       size="lg"
@@ -18,30 +18,30 @@
       :ui="{
         trailingIcon: [
           'transition-transform duration-200',
-          open ? 'rotate-180' : undefined,
+          open ? 'rotate-180' : undefined
         ]
           .filter(Boolean)
-          .join(' '),
+          .join(' ')
       }"
     />
   </UDropdownMenu>
 </template>
 
 <script setup lang="ts">
-import type { DropdownMenuItem } from "@nuxt/ui";
+import type { DropdownMenuItem } from '@nuxt/ui'
 
 const items: DropdownMenuItem[] = [
   {
-    label: "Home",
-    to: "/",
+    label: 'Home',
+    to: '/'
   },
   {
-    label: "Hit Rate",
-    to: "/HitRate",
-  },
-];
+    label: 'Hit Rate',
+    to: '/HitRate'
+  }
+]
 
 function getMenuItems() {
-  return items;
+  return items
 }
 </script>
