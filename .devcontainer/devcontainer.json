@@ -1,0 +1,30 @@
+{
+  "name": "dnd-tools",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:24",
+  "runArgs": [
+    "--name",
+    "dnd-tools"
+  ],
+  "postCreateCommand": "npm install --global pnpm@12.18.0 && pnpm install --frozen-lockfile && bash .devcontainer/setup-shell.sh && pnpm run dev",
+  "forwardPorts": [3000],
+  "portsAttributes": {
+    "3000": {
+      "label": "Nuxt dev server",
+      "onAutoForward": "notify"
+    }
+  },
+  "mounts": [
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.gitconfig,target=/home/node/.gitconfig,type=bind,consistency=cached"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Vue.volar",
+        "dbaeumer.vscode-eslint"
+      ]
+    }
+  },
+  "features": {
+    "ghcr.io/devcontainer-config/features/dot-config:5": {}
+  }
+}
