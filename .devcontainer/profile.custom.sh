@@ -26,3 +26,9 @@ alias gl='git log'
 alias gp='git push'
 alias ll='ls -la'
 alias p='pnpm'
+
+ssh-add -L
+if [ $? -ne 0 ]; then
+    eval $(ssh-agent)
+    ssh-add
+fi
