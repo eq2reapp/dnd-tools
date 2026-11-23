@@ -32,6 +32,11 @@
         label="Attack with advantage"
       />
 
+      <UCheckbox
+        v-model="bless"
+        label="Attack with bless"
+      />
+
       <UButton
         type="submit"
         class="mt-2"
@@ -84,6 +89,7 @@ class HitrateCalc {
   profficiency: number = 0
   primaryStat: number = 0
   advantage: boolean = false
+  bless: boolean = false
   targetAc: number = 0
   hitRate: number = 0
 
@@ -91,11 +97,13 @@ class HitrateCalc {
     profficiency: number,
     primaryStat: number,
     advantage: boolean,
+    bless: boolean,
     targetAc: number
   ) {
     this.profficiency = profficiency
     this.primaryStat = primaryStat
     this.advantage = advantage
+    this.bless = bless
     this.targetAc = targetAc
   }
 
@@ -131,7 +139,8 @@ class HitrateCalc {
 
   private rollForHit(): boolean {
     const roll20 = 1 + Math.floor(Math.random() * 20)
-    const attackVal = roll20 + this.profficiency + this.primaryStat
+    const blessRoll = this.bless ? 1 + Math.floor(Math.random() * 4) : 0
+    const attackVal = roll20 + this.profficiency + this.primaryStat + blessRoll
     return attackVal >= this.targetAc
   }
 }
@@ -140,6 +149,7 @@ const targetAc = ref(15)
 const level = ref(5)
 const primaryStat = ref(5)
 const advantage = ref(false)
+const bless = ref(false)
 const simulations = ref<HitrateCalc[]>([])
 const errors = ref<string[]>([])
 const NUM_RUNS = 100000
@@ -177,6 +187,7 @@ function calculateHitrate() {
     getProfficiency(level.value),
     primaryStat.value,
     advantage.value,
+    bless.value,
     targetAc.value
   )
   if (simulation.calculate()) {
