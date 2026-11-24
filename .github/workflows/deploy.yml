@@ -7,14 +7,12 @@ on:
     branches:
       - main
 
-jobs:
-  build:
-    runs-on: ${{ matrix.os }}
+env:
+  node: 24
 
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node: [24]
+jobs:
+  checks:
+    runs-on: &runner ubuntu-latest
 
     steps:
       - name: Checkout
@@ -26,7 +24,30 @@ jobs:
       - name: Install node
         uses: actions/setup-node@v7
         with:
-          node-version: ${{ matrix.node }}
+          node-version: ${{ env.node }}
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Lint
+        run: pnpm run lint
+
+  build:
+    needs: checks
+    runs-on: *runner
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Install node
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.node }}
           cache: pnpm
 
       - name: Install dependencies
@@ -44,6 +65,7 @@ jobs:
 
   deploy:
     needs: build
+    runs-on: *runner
 
     permissions:
       pages: write      # to deploy to Pages
@@ -52,8 +74,6 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
-    runs-on: ubuntu-latest
 
     steps:
       - name: Deploy to GitHub Pages
