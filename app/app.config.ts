@@ -4,6 +4,9 @@ export default defineAppConfig({
       primary: 'green',
       neutral: 'slate'
     },
+    main: {
+      base: 'min-h-[calc(100vh-var(--ui-header-height)-var(--ui-footer-height))]'
+    },
     formField: {
       defaultVariants: {
         size: 'xl'
