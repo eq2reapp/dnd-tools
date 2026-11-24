@@ -2,25 +2,51 @@
   <UContainer>
     <h1>Crit Rate</h1>
 
-    <UForm class="space-y-4" @submit.prevent="calculateCritRate()">
+    <UForm
+      class="space-y-4"
+      @submit.prevent="calculateCritRate()"
+    >
+      <UCheckbox
+        v-model="critOn20"
+        label="Crit on 20"
+      />
 
-      <UCheckbox v-model="critOn20" label="Crit on 20" />
+      <UCheckbox
+        v-model="critOn19"
+        label="Crit on 19"
+      />
 
-      <UCheckbox v-model="critOn19" label="Crit on 19" />
+      <UCheckbox
+        v-model="critOn18"
+        label="Crit on 18"
+      />
 
-      <UCheckbox v-model="critOn18" label="Crit on 18" />
+      <UCheckbox
+        v-model="advantage"
+        label="Attack with advantage"
+      />
 
-      <UCheckbox v-model="advantage" label="Attack with advantage" />
-
-      <UButton type="submit" class="mt-2">
+      <UButton
+        type="submit"
+        class="mt-2"
+      >
         Calculate
       </UButton>
     </UForm>
 
-    <UAlert v-if="errors.length > 0" color="error" title="Oops!" icon="i-lucide-message-circle-x" class="mt-3">
+    <UAlert
+      v-if="errors.length > 0"
+      color="error"
+      title="Oops!"
+      icon="i-lucide-message-circle-x"
+      class="mt-3"
+    >
       <template #description>
         <ul>
-          <li v-for="(err, index) in errors" :key="index">
+          <li
+            v-for="(err, index) in errors"
+            :key="index"
+          >
             {{ err }}
           </li>
         </ul>
@@ -28,11 +54,19 @@
     </UAlert>
 
     <div v-if="simulations.length > 0">
-      <UTable :data="simulations" :columns="columns" class="flex-1 mt-8" />
-      <UButton type="button" class="mt-2" @click="
-        simulations = [];
-      errors = [];
-      ">
+      <UTable
+        :data="simulations"
+        :columns="columns"
+        class="flex-1 mt-8"
+      />
+      <UButton
+        type="button"
+        class="mt-2"
+        @click="
+          simulations = [];
+          errors = [];
+        "
+      >
         Clear
       </UButton>
     </div>
@@ -78,9 +112,9 @@ class CritrateCalc {
   private rollForCrit(): boolean {
     const roll20 = 1 + Math.floor(Math.random() * 20)
     return (
-      (this.critOn20 && roll20 === 20) ||
-      (this.critOn19 && roll20 === 19) ||
-      (this.critOn18 && roll20 === 18)
+      (this.critOn20 && roll20 === 20)
+      || (this.critOn19 && roll20 === 19)
+      || (this.critOn18 && roll20 === 18)
     )
   }
 }
@@ -112,8 +146,7 @@ const columns: TableColumn<CritrateCalc>[] = [
     accessorKey: 'critOn18',
     header: 'Crit on 18',
     cell: ({ row }) => (row.getValue('critOn18') ? 'Yes' : 'No')
-  }
-  ,
+  },
   {
     accessorKey: 'critRate',
     header: 'Crit Rate',
@@ -133,5 +166,4 @@ function calculateCritRate() {
     simulations.value.push(simulation)
   }
 }
-
 </script>

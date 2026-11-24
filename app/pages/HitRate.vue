@@ -2,32 +2,62 @@
   <UContainer>
     <h1>Hit Rate</h1>
 
-    <UForm class="space-y-4" @submit.prevent="calculateHitrate()">
-      <UFormField label="Enemy AC" name="targetAc">
+    <UForm
+      class="space-y-4"
+      @submit.prevent="calculateHitrate()"
+    >
+      <UFormField
+        label="Enemy AC"
+        name="targetAc"
+      >
         <UInput v-model.number="targetAc" />
       </UFormField>
 
-      <UFormField label="Player level" name="level">
+      <UFormField
+        label="Player level"
+        name="level"
+      >
         <UInput v-model.number="level" />
       </UFormField>
 
-      <UFormField label="Player primary stat" name="primaryStat">
+      <UFormField
+        label="Player primary stat"
+        name="primaryStat"
+      >
         <UInput v-model.number="primaryStat" />
       </UFormField>
 
-      <UCheckbox v-model="advantage" label="Attack with advantage" />
+      <UCheckbox
+        v-model="advantage"
+        label="Attack with advantage"
+      />
 
-      <UCheckbox v-model="bless" label="Attack with bless" />
+      <UCheckbox
+        v-model="bless"
+        label="Attack with bless"
+      />
 
-      <UButton type="submit" class="mt-2">
+      <UButton
+        type="submit"
+        class="mt-2"
+      >
         Calculate
       </UButton>
     </UForm>
 
-    <UAlert v-if="errors.length > 0" color="error" title="Oops!" icon="i-lucide-message-circle-x" class="mt-3">
+    <UAlert
+      v-if="errors.length > 0"
+      color="error"
+      title="Oops!"
+      icon="i-lucide-message-circle-x"
+      class="mt-3"
+    >
       <template #description>
         <ul>
-          <li v-for="(err, index) in errors" :key="index">
+          <li
+            v-for="(err, index) in errors"
+            :key="index"
+          >
             {{ err }}
           </li>
         </ul>
@@ -35,11 +65,19 @@
     </UAlert>
 
     <div v-if="simulations.length > 0">
-      <UTable :data="simulations" :columns="columns" class="flex-1 mt-8" />
-      <UButton type="button" class="mt-2" @click="
-        simulations = [];
-      errors = [];
-      ">
+      <UTable
+        :data="simulations"
+        :columns="columns"
+        class="flex-1 mt-8"
+      />
+      <UButton
+        type="button"
+        class="mt-2"
+        @click="
+          simulations = [];
+          errors = [];
+        "
+      >
         Clear
       </UButton>
     </div>

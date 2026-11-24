@@ -7,22 +7,23 @@
     "dev": "nuxt dev",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
+    "render": "nuxt generate",
     "lint": "eslint .",
     "typecheck": "nuxt typecheck"
   },
   "dependencies": {
-    "@iconify-json/lucide": "^1.2.147",
-    "@iconify-json/simple-icons": "^1.2.100",
-    "@nuxt/ui": "^4.12.0",
-    "nuxt": "^4.6.3",
-    "tailwindcss": "^4.3.3"
+    "@iconify-json/lucide": "^1.2.158",
+    "@iconify-json/simple-icons": "^1.2.103",
+    "@nuxt/ui": "^4.13.0",
+    "nuxt": "^4.6.4",
+    "tailwindcss": "^4.3.5"
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.17.0",
-    "eslint": "^10.13.0",
-    "eslint-plugin-better-tailwindcss": "^4.10.0",
+    "eslint": "^10.15.0",
+    "eslint-plugin-better-tailwindcss": "^4.11.0",
     "typescript": "^6.0.3",
-    "vue-tsc": "^3.3.13"
+    "vue-tsc": "^3.3.14"
   },
   "packageManager": "pnpm@12.18.0"
 }
