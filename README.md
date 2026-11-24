@@ -1,6 +1,6 @@
 # dnd-tools
 
-A collection of simple tools to help build a character.
+A collection of simple tools to help build a character: [dnd-tools](https://eq2reapp.github.io/dnd-tools/)
 
 ## Run
 
