@@ -2,10 +2,7 @@
   <UApp>
     <UHeader>
       <template #left>
-        <NuxtLink
-          to="/"
-          class="focus-visible:outline-3 outline-primary/25 rounded-md p-1 -ms-1"
-        >{{ title }}
+        <NuxtLink to="/" class="focus-visible:outline-3 outline-primary/25 rounded-md p-1 -ms-1">{{ title }}
         </NuxtLink>
 
         <TemplateMenu />
@@ -25,25 +22,14 @@
     <UFooter>
       <template #left>
         <p class="text-sm text-muted">
-          Built with <ULink
-            to="https://nuxt.com"
-            target="_blank"
-          >Nuxt</ULink>, <ULink
-            to="https://ui.nuxt.com"
-            target="_blank"
-          >Nuxt UI</ULink> • © {{ new Date().getFullYear() }}
+          Built with <ULink to="https://nuxt.com" target="_blank">Nuxt</ULink>, <ULink to="https://ui.nuxt.com"
+            target="_blank">Nuxt UI</ULink> • © {{ new Date().getFullYear() }}
         </p>
       </template>
 
       <template #right>
-        <UButton
-          to="https://github.com/eq2reapp/dnd-tools"
-          target="_blank"
-          icon="i-simple-icons-github"
-          aria-label="GitHub"
-          color="neutral"
-          variant="ghost"
-        />
+        <UButton to="https://github.com/eq2reapp/dnd-tools" target="_blank" icon="i-simple-icons-github"
+          aria-label="GitHub" color="neutral" variant="ghost" />
       </template>
     </UFooter>
   </UApp>
