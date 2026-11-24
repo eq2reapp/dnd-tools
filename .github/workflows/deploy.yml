@@ -54,7 +54,7 @@ jobs:
         run: pnpm install
 
       - name: Build
-        run: pnpm run deploy:pages
+        run: NUXT_PUBLIC_APP_VERSION="$(date -u +%F).${GITHUB_RUN_NUMBER}" pnpm run deploy:pages
         env:
           NUXT_APP_BASE_URL: /${{ github.event.repository.name }}/
 

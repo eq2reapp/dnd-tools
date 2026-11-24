@@ -34,6 +34,7 @@
             target="_blank"
           >Nuxt UI</ULink> • ©
           {{ new Date().getFullYear() }}
+          • Version: {{ appVersion }}
         </p>
       </template>
 
@@ -62,6 +63,7 @@ useHead({
 
 const title = 'D&D Tools'
 const description = 'Some references and calculators.'
+const { appVersion } = useRuntimeConfig().public
 
 useSeoMeta({
   title,
