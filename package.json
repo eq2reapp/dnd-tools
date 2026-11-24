@@ -9,7 +9,8 @@
     "postinstall": "nuxt prepare",
     "render": "nuxt generate",
     "lint": "eslint .",
-    "typecheck": "nuxt typecheck"
+    "typecheck": "nuxt typecheck",
+    "deploy:pages": "nuxt build --preset github_pages"
   },
   "dependencies": {
     "@iconify-json/lucide": "^1.2.158",
