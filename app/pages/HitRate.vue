@@ -27,6 +27,13 @@
         <UInput v-model.number="primaryStat" />
       </UFormField>
 
+      <UFormField
+        label="Weapon +"
+        name="weaponBonus"
+      >
+        <UInput v-model.number="weaponBonus" />
+      </UFormField>
+
       <UCheckbox
         v-model="advantage"
         label="Attack with advantage"
@@ -90,6 +97,7 @@ import type { TableColumn } from '@nuxt/ui'
 class HitrateCalc {
   public profficiency: number = 0
   public primaryStat: number = 0
+  public weaponBonus: number = 0
   public advantage: boolean = false
   public bless: boolean = false
   public targetAc: number = 0
@@ -98,12 +106,14 @@ class HitrateCalc {
   constructor(
     profficiency: number,
     primaryStat: number,
+    weaponBonus: number,
     advantage: boolean,
     bless: boolean,
     targetAc: number
   ) {
     this.profficiency = profficiency
     this.primaryStat = primaryStat
+    this.weaponBonus = weaponBonus
     this.advantage = advantage
     this.bless = bless
     this.targetAc = targetAc
@@ -142,7 +152,7 @@ class HitrateCalc {
   private rollForHit(): boolean {
     const roll20 = 1 + Math.floor(Math.random() * 20)
     const blessRoll = this.bless ? 1 + Math.floor(Math.random() * 4) : 0
-    const attackVal = roll20 + this.profficiency + this.primaryStat + blessRoll
+    const attackVal = roll20 + this.profficiency + this.primaryStat + this.weaponBonus + blessRoll
     return attackVal >= this.targetAc
   }
 }
@@ -150,6 +160,7 @@ class HitrateCalc {
 const targetAc = ref(15)
 const level = ref(5)
 const primaryStat = ref(5)
+const weaponBonus = ref(0)
 const advantage = ref(false)
 const bless = ref(false)
 const simulations = ref<HitrateCalc[]>([])
@@ -172,6 +183,11 @@ const columns: TableColumn<HitrateCalc>[] = [
     cell: ({ row }) => row.getValue('primaryStat')
   },
   {
+    accessorKey: 'weaponBonus',
+    header: 'Weapon +',
+    cell: ({ row }) => row.getValue('weaponBonus')
+  },
+  {
     accessorKey: 'advantage',
     header: 'Advantage',
     cell: ({ row }) => (row.getValue('advantage') ? 'Yes' : 'No')
@@ -188,6 +204,7 @@ function calculateHitrate() {
   const simulation = new HitrateCalc(
     getProfficiency(level.value),
     primaryStat.value,
+    weaponBonus.value,
     advantage.value,
     bless.value,
     targetAc.value
